@@ -18,6 +18,7 @@ namespace Asteroids
         static int xBackground = 800;
         static BaseObject[] _obj;
         static Star star;
+        static Bullet bullet;
 
         static Game()
         {
@@ -46,11 +47,12 @@ namespace Asteroids
         {
             _obj = new BaseObject[20];
             for(int i = 0; i < _obj.Length/2; i++)
-                _obj[i]=new BaseObject(new Point(Game.Width -10*i, Game.Height -10*i), new Point(i*2, i*3), new Size(20, 20));
+                _obj[i]=new Planet(new Point(Game.Width -10*i, Game.Height -10*i), new Point(i*2, i*3), "pictures\\planet.bmp");
             for (int i = _obj.Length/2; i < _obj.Length ; i++)
                 _obj[i] = new Star(new Point(Game.Width - 10 * i, Game.Height - 10 * i), new Point(i * 2, i * 3));
 
             star = new Star(new Point(200, 200), new Point(10, 10));
+            bullet = new Bullet(new Point(0, 400), new Point(5, 0), "pictures\\bullet.bmp");
         }
 
         private static void Timer_Tick(object sender, EventArgs e)
@@ -71,9 +73,10 @@ namespace Asteroids
             foreach (BaseObject obj in _obj)
 
             {
-                obj.Draw();               
+                obj?.Draw();               
             }
-            star.Draw();
+            bullet.Draw();
+
             Buffer.Render();
         }
 
@@ -81,9 +84,21 @@ namespace Asteroids
         {
             xBackground-=10;
             if (xBackground < -200) xBackground = 800;
-            foreach(BaseObject obj in _obj)
-                obj.Update();
-            star.Update(); 
+            for(int i=0; i<_obj.Length; i++)
+            {
+                if (_obj[i] != null)
+                {
+                    _obj[i].Update();
+                    if (_obj[i] is Planet)
+                        if (_obj[i].Collision(bullet))
+                        {
+                            Console.WriteLine("Clash!");
+                            _obj[i] = null;
+                        }
+                }
+
+            }
+            bullet.Update(); 
         }
 
     }

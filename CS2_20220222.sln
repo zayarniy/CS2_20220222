@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asteroids", "Asteroids\Asteroids.csproj", "{87802122-4980-4349-A7B0-B35547D135A7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lesson2", "Lesson2", "{F4571227-7CC2-4236-BD40-0D20C71CB468}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfaceExample", "InterfaceExample\InterfaceExample.csproj", "{962D57ED-2176-4872-9718-EE8C0919381F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +19,16 @@ Global
 		{87802122-4980-4349-A7B0-B35547D135A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87802122-4980-4349-A7B0-B35547D135A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87802122-4980-4349-A7B0-B35547D135A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{962D57ED-2176-4872-9718-EE8C0919381F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{962D57ED-2176-4872-9718-EE8C0919381F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{962D57ED-2176-4872-9718-EE8C0919381F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{962D57ED-2176-4872-9718-EE8C0919381F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{962D57ED-2176-4872-9718-EE8C0919381F} = {F4571227-7CC2-4236-BD40-0D20C71CB468}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1F36409A-2777-4AA2-8BB7-A1C225F85E6B}

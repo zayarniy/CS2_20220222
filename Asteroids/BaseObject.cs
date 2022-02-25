@@ -7,13 +7,15 @@ using System.Drawing;
 
 namespace Asteroids
 {
-    internal class BaseObject
+    internal abstract class BaseObject: ICollision
     {
         //Point pos;//поле
          protected Point Pos { get; set; } //автоматическое свойство
         protected Point Dir { get; set; }//VX,VY
 
         protected Size Size { get; set; }
+
+        public Rectangle Rect => new Rectangle(Pos, Size);
 
         public BaseObject(Point pos, Point dir, Size size)
         {
@@ -22,12 +24,9 @@ namespace Asteroids
             Size = size;
         }
 
-        public virtual void Draw()
-        {
-            Game.Buffer.Graphics.DrawEllipse(Pens.White, Pos.X, Pos.Y,Size.Width,Size.Height);            
-        }
+        public abstract void Draw();
 
-        public void Update()
+        public virtual  void Update()
         {
             Pos=new Point(Pos.X+Dir.X,Pos.Y+Dir.Y);
             //Pos.Offset(Dir);
@@ -35,7 +34,10 @@ namespace Asteroids
             if (Pos.Y < 0 || Pos.Y > Game.Height) Dir = new Point(Dir.X, -Dir.Y);
         }
 
-
+        public bool Collision(ICollision obj)
+        {
+            return this.Rect.IntersectsWith(obj.Rect);
+        }
     }
 
     internal class Star: BaseObject
@@ -46,9 +48,55 @@ namespace Asteroids
 
         }
 
-        public override  void Draw()//полиморфизм
+        public override void Draw()//полиморфизм
+        {
+            Game.Buffer.Graphics.DrawImage(img, Pos);
+        }
+
+    }
+
+    #region Вариант 1
+    internal class Planet : BaseObject
+    {       
+        Image img;
+        public Planet(Point pos, Point dir,string imgFilename) : base(pos, dir, Size.Empty)
+        {
+            img = Image.FromFile(imgFilename);
+            Size=new Size(img.Width,img.Height);
+        }
+
+        public override void Draw()//полиморфизм
         {
             Game.Buffer.Graphics.DrawImage(img, Pos);
         }
     }
+    #endregion
+
+    internal class Planet2 : Star
+    {
+        Image img;
+        public Planet2(Point pos, Point dir, string imgFilename) : base(pos, dir)
+        {
+            img = Image.FromFile(imgFilename);
+            Size = new Size(img.Width, img.Height);
+        }
+
+    }
+
+    internal class Bullet : Star
+    {
+        Image img;
+        public Bullet(Point pos, Point dir, string imgFilename) : base(pos, dir)
+        {
+            img = Image.FromFile(imgFilename);
+            Size = new Size(img.Width, img.Height);
+        }
+
+        public void Update()//убрать зеленое подчеркивание
+        {
+            Pos=new Point(Pos.X+Dir.X,Pos.Y);
+            if (Pos.X > Game.Width) Pos = new Point(0,Game.Random.Next(0,Game.Height));
+        }
+    }
+
 }
