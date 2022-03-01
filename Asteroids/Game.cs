@@ -19,6 +19,7 @@ namespace Asteroids
         static BaseObject[] _obj;
         static Star star;
         static Bullet bullet;
+        private static Ship ship;
 
         static Game()
         {
@@ -37,10 +38,36 @@ namespace Asteroids
             // Связываем буфер в памяти с графическим объектом, чтобы рисовать в буфере
             Buffer = _context.Allocate(g, new Rectangle(0, 0, Width, Height));
             Load();
+            form.KeyDown += Form_KeyDown;
             Timer timer = new Timer();
             timer.Interval = 50;
             timer.Tick += Timer_Tick;
             timer.Start();
+        }
+
+        private static void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Left:
+                    ship.Left();
+                break;
+                case Keys.Down:
+                    ship.Down();
+                    break;
+                case Keys.Up:
+                    ship.Up();
+                    break;
+                case Keys.Right:
+                    ship.Right();
+                    break;
+                case Keys.Space:
+                    if (bullet.CanFire)
+                        bullet.Fire(new Point(ship.Rect.X+40,ship.Rect.Y), new Point(5, 0));
+                    break;
+
+
+            }
         }
 
         public static void Load()
@@ -52,7 +79,8 @@ namespace Asteroids
                 _obj[i] = new Star(new Point(Game.Width - 10 * i, Game.Height - 10 * i), new Point(i * 2, i * 3));
 
             star = new Star(new Point(200, 200), new Point(10, 10));
-            bullet = new Bullet(new Point(0, 400), new Point(5, 0), "pictures\\bullet.bmp");
+            bullet = new Bullet(new Point(-200, 400), new Point(0, 0), "pictures\\bullet.bmp");
+            ship= new Ship(new Point(0, 200), new Point(5, 5), "pictures\\Ship.bmp");
         }
 
         private static void Timer_Tick(object sender, EventArgs e)
@@ -76,7 +104,7 @@ namespace Asteroids
                 obj?.Draw();               
             }
             bullet.Draw();
-
+            ship.Draw();
             Buffer.Render();
         }
 
@@ -99,6 +127,7 @@ namespace Asteroids
 
             }
             bullet.Update(); 
+            ship.Update();
         }
 
     }

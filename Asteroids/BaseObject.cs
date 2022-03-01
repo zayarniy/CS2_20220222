@@ -86,6 +86,8 @@ namespace Asteroids
     internal class Bullet : Star
     {
         Image img;
+
+        public bool CanFire { get; private set; } = true;
         public Bullet(Point pos, Point dir, string imgFilename) : base(pos, dir)
         {
             img = Image.FromFile(imgFilename);
@@ -95,8 +97,69 @@ namespace Asteroids
         public void Update()//убрать зеленое подчеркивание
         {
             Pos=new Point(Pos.X+Dir.X,Pos.Y);
-            if (Pos.X > Game.Width) Pos = new Point(0,Game.Random.Next(0,Game.Height));
+            if (Pos.X > Game.Width)
+            {
+               // Pos = new Point(0, Game.Random.Next(0, Game.Height));
+               CanFire = true;
+            }
         }
+        
+
+
+        public override void Draw()//полиморфизм
+        {
+            Game.Buffer.Graphics.DrawImage(img, Pos);
+        }
+
+        public void Fire(Point pos, Point dir)
+        {
+            CanFire = false;
+            Pos = pos;
+            Dir = dir;
+        }
+
     }
+
+    internal class Ship : Star
+    {
+        Image img;
+        public Ship(Point pos, Point dir, string imgFilename) : base(pos, dir)
+        {
+            img = Image.FromFile(imgFilename);
+            Size = new Size(img.Width, img.Height);
+        }
+
+        public override void Update()//убрать зеленое подчеркивание
+        {
+            Pos = new Point(Pos.X + Dir.X, Pos.Y+Dir.Y);
+        }
+
+        public void Up()
+        {
+            Dir = new Point(Dir.X, -Math.Abs(Dir.Y));
+        }
+        public void Down()
+        {
+            Dir = new Point(Dir.X, Math.Abs(Dir.Y));
+        }
+
+        public void Left()
+        {
+            Dir = new Point(-Math.Abs(Dir.X), Dir.Y);
+        }
+        public void Right()
+        {
+            Dir = new Point(Math.Abs(Dir.X), Dir.Y);
+        }
+
+        public override void Draw()//полиморфизм
+        {
+            Game.Buffer.Graphics.DrawImage(img, Pos);
+        }
+
+
+    }
+
+
 
 }
