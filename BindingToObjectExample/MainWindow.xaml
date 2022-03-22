@@ -1,0 +1,40 @@
+﻿<Window x:Class="BindingToObjectExample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BindingToObjectExample"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" x:Name="wndMain">
+    <Window.Resources>
+        <local:Employer x:Key="employer2"/>
+    </Window.Resources>
+    <StackPanel>
+        <!--Static resource-->
+        <!--
+        <TextBlock>Name:</TextBlock>
+        <TextBox x:Name="lName" Text="{Binding Source={StaticResource employer},Path=Name}"/>
+        <TextBlock>Description</TextBlock>
+        <TextBox x:Name="tbDescription" Text="{Binding Source={StaticResource employer},Path=Description}" />
+        <TextBlock Text="Age"/>
+        <TextBox Text="{Binding Source={StaticResource employer},Path=Age}"/>
+        -->
+        <!--Element name-->
+        <!--
+        <TextBlock>Name:</TextBlock>
+        <TextBox x:Name="lName" Text="{Binding ElementName=wndMain,Path=Employer.Name}"/>
+        <TextBlock>Description</TextBlock>
+        <TextBox x:Name="tbDescription" Text="{Binding ElementName=wndMain,Path=Employer.Description}" />
+        <TextBlock Text="Age"/>
+        <TextBox Text="{Binding ElementName=wndMain,Path=Employer.Age}"/>
+        -->
+        <!--DataContent-->
+        <TextBlock>Name:</TextBlock>
+        <TextBox x:Name="lName" Text="{Binding Path=Name,UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock>Description</TextBlock>
+        <TextBox x:Name="tbDescription" Text="{Binding Path=Description}" />
+        <TextBlock Text="Age"/>
+        <TextBox Text="{Binding Path=Age}"/>
+        <Button Click="Button_Click" Content="Click me"/>
+    </StackPanel>
+</Window>

@@ -7,7 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asteroids", "Asteroids\Aste
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lesson2", "Lesson2", "{F4571227-7CC2-4236-BD40-0D20C71CB468}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfaceExample", "InterfaceExample\InterfaceExample.csproj", "{962D57ED-2176-4872-9718-EE8C0919381F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterfaceExample", "InterfaceExample\InterfaceExample.csproj", "{962D57ED-2176-4872-9718-EE8C0919381F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lesson6", "Lesson6", "{1EA80010-BF23-4BEA-93DF-F0D189BE82DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BindingToObjectExample", "BindingToObjectExample\BindingToObjectExample.csproj", "{0C1B6C04-B489-40A7-B276-6721E3D2D7F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,12 +27,17 @@ Global
 		{962D57ED-2176-4872-9718-EE8C0919381F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{962D57ED-2176-4872-9718-EE8C0919381F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{962D57ED-2176-4872-9718-EE8C0919381F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C1B6C04-B489-40A7-B276-6721E3D2D7F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C1B6C04-B489-40A7-B276-6721E3D2D7F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C1B6C04-B489-40A7-B276-6721E3D2D7F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C1B6C04-B489-40A7-B276-6721E3D2D7F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{962D57ED-2176-4872-9718-EE8C0919381F} = {F4571227-7CC2-4236-BD40-0D20C71CB468}
+		{0C1B6C04-B489-40A7-B276-6721E3D2D7F3} = {1EA80010-BF23-4BEA-93DF-F0D189BE82DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1F36409A-2777-4AA2-8BB7-A1C225F85E6B}
